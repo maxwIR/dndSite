@@ -3,19 +3,17 @@
     "version": "1.0.0",
     "description": "",
     "main": "build/bundle.js",
-    "scripts": {
-
-    },
+    "scripts": {},
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "react": "^16.8.1",
-      "react-dom": "^16.8.1",
-      "react-icons": "^3.4.0",
-      "cookie-parser": "~1.4.3",
-      "debug": "~2.6.9",
-      "express": "~4.16.0",
-      "http-errors": "~1.6.2",
-      "morgan": "~1.9.0"
+        "react": "^16.8.1",
+        "react-dom": "^16.8.1",
+        "react-icons": "^3.4.0",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.9",
+        "express": "~4.16.0",
+        "http-errors": "~1.6.2",
+        "morgan": "~1.9.0"
     }
-  }
+}

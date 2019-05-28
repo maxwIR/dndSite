@@ -64,3 +64,4 @@ typings/
 
 # output dirs
 out/src
+build/bundle.js
