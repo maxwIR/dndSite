@@ -40,7 +40,7 @@ jspm_packages/
 typings/
 *.js
 *.js.map
-
+!webpack.config.js
 # Optional npm cache directory
 .npm
 
