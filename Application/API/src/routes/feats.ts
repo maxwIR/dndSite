@@ -12,7 +12,7 @@ router.use('/search', (req: Request, res: Response) => {
    res.send(filtereFeats);
 });
 router.use('/',  (req: Request, res: Response) => {
-   res.sendFile('feats.json', {root: __dirname+'/../public'});
+   res.sendFile('feats.json', {root: __dirname+'/../../public'});
 });
 
 export const FeatsRouter: Router = router;
