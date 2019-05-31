@@ -6,4 +6,4 @@ router.use('/', (req: Request, res: Response) => {
       res.sendFile('basic.html', {root: __dirname+'/../../public'});
 });
 
-export const IndexRouter: Router = router;
+export const APIRouter: Router = router;

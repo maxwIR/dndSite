@@ -4,7 +4,7 @@ import * as path from 'path';
 import cookieParser from 'cookie-parser';
 import { createServer } from "http";
 
-import { IndexRouter } from "./routes/index";
+import { APIRouter } from "./routes/api";
 import { FeatsRouter } from "./routes/feats";
 
 
@@ -13,9 +13,9 @@ var app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/feats', FeatsRouter);
-app.use('/', IndexRouter);
+app.use('/api', APIRouter);
+app.use('/', express.static(path.join(__dirname, './public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
