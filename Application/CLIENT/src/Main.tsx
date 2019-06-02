@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Splash from './Login/Splash';
+import Character from './Character/Character';
 
 interface IMain {
     characterID:string;
@@ -28,7 +29,7 @@ class Main extends React.Component<{}, IMain> {
             );
         else {
             return (
-                <h1> Welcome back {this.state.characterID}</h1>
+                <Character characterID = {this.state.characterID}/>
             )
         }
 	}

@@ -38,32 +38,39 @@ class Login extends React.Component<ILoginP, ILogin> {
 	render() {
         console.log("in Login")
         return (
-            <div className="row">
-                <div className="col-md-8 offset-md-2">
-                    <form className="form-horizontal" onSubmit={this.login}>
-                        <div className="form-group">
-                            <label className="control-label col-sm-5">Your character:</label>
-                            <div className="col-sm-7">
-                                <input type="text" className="form-control" id="charName" placeholder="Enter character name"/>
+            <div>
+                <div className="row">
+                    <div className="col-md-8 offset-md-2">
+                        <h1>Sign In</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-8 offset-md-2">
+                        <form className="form-horizontal" onSubmit={this.login}>
+                            <div className="form-group">
+                                <label className="control-label col-sm-5">Your character:</label>
+                                <div className="col-sm-7">
+                                    <input type="text" className="form-control" id="charName" placeholder="Enter character name"/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label col-sm-2">PIN:</label>
-                            <div className="col-sm-7"> 
-                                <input type="password" className="form-control" id="pin" placeholder="Enter PIN"/>
+                            <div className="form-group">
+                                <label className="control-label col-sm-2">PIN:</label>
+                                <div className="col-sm-7"> 
+                                    <input type="password" className="form-control" id="pin" placeholder="Enter PIN"/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group"> 
-                            <div className="offset-sm-2 col-sm-8">
-                                <button type="submit" id="submitButton" className="btn btn-default">Let's roll!</button>
+                            <div className="form-group"> 
+                                <div className="offset-sm-2 col-sm-8">
+                                    <button type="submit" id="submitButton" className="btn btn-default">Let's roll!</button>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group"> 
-                            <div className="offset-sm-4 col-sm-8">
-                                <button className="btn btn-default" onClick={(e) => {e.preventDefault; this.props.pickNew();}}>No character yet? Make a new one!</button>
+                            <div className="form-group"> 
+                                <div className="offset-sm-4 col-sm-8">
+                                    <button className="btn btn-default" onClick={(e) => {e.preventDefault(); this.props.pickNew();}}>No character yet? Make a new one!</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
