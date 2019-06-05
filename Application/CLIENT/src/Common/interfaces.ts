@@ -6,3 +6,4 @@ export interface ICharacter {
     race: string,
     alignment: string,
 }
+

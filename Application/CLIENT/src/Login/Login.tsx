@@ -28,10 +28,20 @@ class Login extends React.Component<ILoginP, ILogin> {
         let id = MD5(name.toLowerCase()+pin);
         console.log(name, pin, id);
 
-        let but = (document.getElementById('submitButton') as HTMLButtonElement).disabled = true;
+        let but = (document.getElementById('submitButton') as HTMLButtonElement); 
+        but.disabled= true;
+        let load = (document.getElementById('loadingIcon'));
+        load.hidden = false;
         let idGood = await confirmID(id);
-        console.log("all good");
-        this.props.setCharacterId(id);
+        if (idGood){
+          console.log("all good");
+          this.props.setCharacterId(id);
+        } else {
+          console.log("not good");
+          load.hidden=true;
+          but.disabled=false;
+          (document.getElementById('errorMessage')).hidden=false;
+        }
         return "";
     }
     
@@ -47,6 +57,9 @@ class Login extends React.Component<ILoginP, ILogin> {
                 <div className="row">
                     <div className="col-md-8 offset-md-2">
                         <form className="form-horizontal" onSubmit={this.login}>
+                          <div id="errorMessage" hidden>
+                            <p>Could not find character by that name and PIN</p>
+                          </div>
                             <div className="form-group">
                                 <label className="control-label col-sm-5">Your character:</label>
                                 <div className="col-sm-7">
@@ -62,6 +75,7 @@ class Login extends React.Component<ILoginP, ILogin> {
                             <div className="form-group"> 
                                 <div className="offset-sm-2 col-sm-8">
                                     <button type="submit" id="submitButton" className="btn btn-default">Let's roll!</button>
+                                    <iframe src="https://giphy.com/embed/3oEjI6SIIHBdRxXI40" width="480" height="480" frameBorder="0" className="giphy-embed" id="loadingIcon" hidden></iframe>
                                 </div>
                             </div>
                             <div className="form-group"> 
@@ -82,9 +96,24 @@ export default Login
 
 function confirmID(id:string):Promise<boolean>{
     return new Promise(resolve => {
-        setTimeout(()=> {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/verify/'+id, true);
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log("resp"+xhr.responseText);
             resolve(true);
-        }, 2000)
+          } else {
+            console.error(">", xhr.statusText);
+            resolve(false);
+          }
+        }
+      };
+      xhr.onerror = function (e) {
+        console.error("> "+ xhr.statusText);
+        resolve(false);
+      };
+      xhr.send();
     })
 }
 

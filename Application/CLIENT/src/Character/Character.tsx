@@ -18,14 +18,13 @@ class Main extends React.Component< IMainP, IMainS> {
     }
     
     async loadCharacter(id: string){
-
         this.setState({});
     }
 
 	render() {
         console.log("in Character");
        return (
-           <h1>Hi this.props.characterID</h1>
+           <h1>Hi {this.props.characterID}</h1>
        )
 	}
 
