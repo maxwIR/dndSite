@@ -1,21 +1,21 @@
 export function request(path: string) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', path, true);
         xhr.onload = function (e) {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               console.log("resp"+xhr.responseText);
-              resolve(true);
+              resolve(xhr.responseText);
             } else {
               console.error(">", xhr.statusText);
-              resolve(false);
+              resolve(xhr.statusText);
             }
           }
         };
         xhr.onerror = function (e) {
           console.error("> "+ xhr.statusText);
-          resolve(false);
+          reject(e);
         };
         xhr.send();
       })

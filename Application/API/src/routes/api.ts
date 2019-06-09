@@ -6,9 +6,10 @@ const router: Router = Router();
 router.use('/character/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    getCharacter(id).then(res.send);
-  }
+    getCharacter(id).then((char) => res.send(JSON.stringify(char)));
+  } else {
     res.send(new Error('Character not found'));
+  }
 });
 
 router.use('/verify/:id', (req: Request, res: Response) => {

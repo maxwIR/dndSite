@@ -21,7 +21,7 @@ class Character extends React.Component<ICharacterP, ICharacterS> {
     }
     
     async loadCharacter(id: string):Promise<ICharacter>{
-        return request('/api/character/'+id) as Promise<ICharacter>;
+        return (request('/api/character/'+id)).then(JSON.parse);
         // let f:IField = {
         //     breakdown: {
         //         src1: 4,

@@ -41,7 +41,7 @@ interface IField {
 
 
 
-export async function getCharacter(id:string){
+export async function getCharacter(id:string) : Promise<ICharacter>{
     let f:IField = {
         breakdown: {
             src1: 4,
