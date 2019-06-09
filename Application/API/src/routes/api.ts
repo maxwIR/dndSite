@@ -1,11 +1,12 @@
 import { Router, Request, Response } from 'express';
+import { getCharacter } from '../characterManager/character';
 
 const router: Router = Router();
 
 router.use('/character/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    res.send({id: id, name: "Kwothe", player: "Max"});
+    res.send(getCharacter(id));
   }
     res.send(new Error('Character not found'));
 });

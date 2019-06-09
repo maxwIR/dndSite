@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { request } from '../Common/util';
 // import Splash from '';
 
 interface ILogin {
@@ -95,26 +96,8 @@ class Login extends React.Component<ILoginP, ILogin> {
 export default Login
 
 function confirmID(id:string):Promise<boolean>{
-    return new Promise(resolve => {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/verify/'+id, true);
-      xhr.onload = function (e) {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            console.log("resp"+xhr.responseText);
-            resolve(true);
-          } else {
-            console.error(">", xhr.statusText);
-            resolve(false);
-          }
-        }
-      };
-      xhr.onerror = function (e) {
-        console.error("> "+ xhr.statusText);
-        resolve(false);
-      };
-      xhr.send();
-    })
+  return request('/api/verify/'+id) as Promise<boolean>;
+  //return new Promise(resolve => setTimeout(()=>resolve(true), 2000));
 }
 
 var MD5 = function(string) {
