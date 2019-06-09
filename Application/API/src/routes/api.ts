@@ -6,7 +6,7 @@ const router: Router = Router();
 router.use('/character/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    res.send(getCharacter(id));
+    getCharacter(id).then(res.send);
   }
     res.send(new Error('Character not found'));
 });
