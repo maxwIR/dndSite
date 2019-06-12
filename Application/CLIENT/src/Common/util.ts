@@ -1,4 +1,4 @@
-export function request(path: string) {
+export function request(path: string): Promise<string>{
     return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', path, true);

@@ -1,3 +1,15 @@
 body {
     background-color: lightgrey
 }
+
+.card {
+    box-shadow: 10px 10px 20px grey;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    border-radius: 10px;
+}
+
+.full {
+    height: 100vh;
+}

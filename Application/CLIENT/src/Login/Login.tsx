@@ -47,56 +47,57 @@ class Login extends React.Component<ILoginP, ILogin> {
     }
     
 	render() {
-        console.log("in Login")
-        return (
-            <div>
-                <div className="row">
-                    <div className="col-md-8 offset-md-2">
-                        <h1>Sign In</h1>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-8 offset-md-2">
-                        <form className="form-horizontal" onSubmit={this.login}>
-                          <div id="errorMessage" hidden>
-                            <p>Could not find character by that name and PIN</p>
-                          </div>
-                            <div className="form-group">
-                                <label className="control-label col-sm-5">Your character:</label>
-                                <div className="col-sm-7">
-                                    <input type="text" className="form-control" id="charName" placeholder="Enter character name"/>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label className="control-label col-sm-2">PIN:</label>
-                                <div className="col-sm-7"> 
-                                    <input type="password" className="form-control" id="pin" placeholder="Enter PIN"/>
-                                </div>
-                            </div>
-                            <div className="form-group"> 
-                                <div className="offset-sm-2 col-sm-8">
-                                    <button type="submit" id="submitButton" className="btn btn-default">Let's roll!</button>
-                                    <iframe src="https://giphy.com/embed/3oEjI6SIIHBdRxXI40" width="480" height="480" frameBorder="0" className="giphy-embed" id="loadingIcon" hidden></iframe>
-                                </div>
-                            </div>
-                            <div className="form-group"> 
-                                <div className="offset-sm-4 col-sm-8">
-                                    <button className="btn btn-default" onClick={(e) => {e.preventDefault(); this.props.pickNew();}}>No character yet? Make a new one!</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        )
+      console.log("in Login")
+      return (
+         <div className="row align-items-center full">
+            <div className="col-xs-10 col-sm-8 col-md-6 col-lg-4 card align-items-center">
+               <div className="row">
+						<div className="col-12">
+								<h1>Sign In</h1>
+						</div>
+               </div>
+               <div className="row">
+                  <div className="col-md-12">
+                     <form className="form-horizontal" onSubmit={this.login}>
+                        <div id="errorMessage" hidden>
+									<p>Could not find character by that name and PIN</p>
+								</div>
+								<div className="form-group row">
+									<label className="control-label col-sm-12">Your character:</label>
+									<div className="col-sm-12">
+										<input type="text" className="form-control" id="charName" placeholder="Enter character name"/>
+									</div>
+								</div>
+								<div className="form-group row">
+									<label className="control-label col-sm-12">PIN:</label>
+									<div className="col-sm-12"> 
+										<input type="password" className="form-control" id="pin" placeholder="Enter PIN"/>
+									</div>
+								</div>
+								<div className="form-group row"> 
+									<div className="offset-sm-4 col-sm-6">
+										<button type="submit" id="submitButton" className="btn btn-primary">Let's roll!</button>
+										<iframe src="https://giphy.com/embed/3oEjI6SIIHBdRxXI40" width="480" height="480" frameBorder="0" className="giphy-embed" id="loadingIcon" hidden></iframe>
+									</div>
+								</div>
+								<div className="form-group row align-items-right"> 
+									<div className="offset-sm-6 col-sm-6">
+										<button className="btn btn-default" onClick={(e) => {e.preventDefault(); this.props.pickNew();}}>No character yet?<br/>Make a new one!</button>
+									</div>
+								</div>
+                     </form>
+                  </div>
+               </div> 
+            </div> 
+         </div>
+      )
 	}
-
 }
 
 export default Login
 
 function confirmID(id:string):Promise<boolean>{
-  return request('/api/verify/'+id) as Promise<boolean>;
+  return request('/api/verify/'+id).then(string => !!string) as Promise<boolean>;
   //return new Promise(resolve => setTimeout(()=>resolve(true), 2000));
 }
 
