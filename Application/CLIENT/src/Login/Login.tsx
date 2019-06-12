@@ -32,8 +32,6 @@ class Login extends React.Component<ILoginP, ILogin> {
         let but = (document.getElementById('submitButton') as HTMLButtonElement); 
 		  but.disabled= true;
 		  but.innerHTML= '<i class="fa fa-circle-o-notch fa-spin"></i>';
-        let load = (document.getElementById('loadingIcon'));
-        load.hidden = false;
         let idGood = await confirmID(id);
         if (idGood){
           console.log("all good");
