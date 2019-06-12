@@ -30,7 +30,8 @@ class Login extends React.Component<ILoginP, ILogin> {
         console.log(name, pin, id);
 
         let but = (document.getElementById('submitButton') as HTMLButtonElement); 
-        but.disabled= true;
+		  but.disabled= true;
+		  but.innerHTML= '<i class="fa fa-circle-o-notch fa-spin"></i>';
         let load = (document.getElementById('loadingIcon'));
         load.hidden = false;
         let idGood = await confirmID(id);
@@ -39,7 +40,7 @@ class Login extends React.Component<ILoginP, ILogin> {
           this.props.setCharacterId(id);
         } else {
           console.log("not good");
-          load.hidden=true;
+          but.innerHTML= "Let's roll!";
           but.disabled=false;
           (document.getElementById('errorMessage')).hidden=false;
         }
@@ -59,29 +60,28 @@ class Login extends React.Component<ILoginP, ILogin> {
                <div className="row">
                   <div className="col-md-12">
                      <form className="form-horizontal" onSubmit={this.login}>
-                        <div id="errorMessage" hidden>
+                        <div id="errorMessage" className="alert alert-danger" hidden>
 									<p>Could not find character by that name and PIN</p>
 								</div>
 								<div className="form-group row">
 									<label className="control-label col-sm-12">Your character:</label>
 									<div className="col-sm-12">
-										<input type="text" className="form-control" id="charName" placeholder="Enter character name"/>
+										<input type="text" className="form-control" id="charName" placeholder="Enter character name" required/>
 									</div>
 								</div>
 								<div className="form-group row">
 									<label className="control-label col-sm-12">PIN:</label>
 									<div className="col-sm-12"> 
-										<input type="password" className="form-control" id="pin" placeholder="Enter PIN"/>
+										<input type="password" className="form-control" id="pin" placeholder="Enter PIN" required/>
 									</div>
 								</div>
-								<div className="form-group row"> 
-									<div className="offset-sm-4 col-sm-6">
-										<button type="submit" id="submitButton" className="btn btn-primary">Let's roll!</button>
-										<iframe src="https://giphy.com/embed/3oEjI6SIIHBdRxXI40" width="480" height="480" frameBorder="0" className="giphy-embed" id="loadingIcon" hidden></iframe>
+								<div className="form-group row justify-content-center"> 
+									<div className="col-sm-4">
+										<button type="submit" id="submitButton" className="btn btn-primary start">Let's roll!</button>
 									</div>
 								</div>
-								<div className="form-group row align-items-right"> 
-									<div className="offset-sm-6 col-sm-6">
+								<div className="form-group row justify-content-right"> 
+									<div className="offset-sm-5 col-sm-7">
 										<button className="btn btn-default" onClick={(e) => {e.preventDefault(); this.props.pickNew();}}>No character yet?<br/>Make a new one!</button>
 									</div>
 								</div>

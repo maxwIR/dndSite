@@ -12,7 +12,7 @@ class Main extends React.Component<{}, IMain> {
         
         this.state = {
             characterID: null
-        }
+        };
 
         this.setCharacterId = this.setCharacterId.bind(this);
     }
