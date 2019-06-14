@@ -1,0 +1,29 @@
+{
+	"id": "defaultID",
+	"name" : "DefaultCharacter",
+	"alignment" : "NN",
+	"armorClass" : {"breakdown":{}, "conditional":{}},
+	"currentHp" : 1,
+	"experience": 0,
+	"feats": [],
+	"flatFootedArmorClass": {"breakdown":{}, "conditional":{}},
+	"inventory": [],
+	"levels": [],
+	"player": "DefaultPlayer",
+	"proficiencies": [],
+	"race": "DefaultRace",
+	"racialTraits": [],
+	"skills": {},
+	"speed": {"breakdown":{}, "conditional":{}},
+	"stats": {
+		"strength": {"breakdown":{}, "conditional":{}},
+		"dexterity": {"breakdown":{}, "conditional":{}},
+		"constitution": {"breakdown":{}, "conditional":{}},
+		"wisdom": {"breakdown":{}, "conditional":{}},
+		"intelligence": {"breakdown":{}, "conditional":{}},
+		"charasima": {"breakdown":{}, "conditional":{}}
+	},
+	"touchArmorClass": {"breakdown":{}, "conditional":{}},
+	"weapons": [],
+	"campaign": "defaultChampaign"
+}

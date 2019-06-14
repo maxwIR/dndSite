@@ -12,6 +12,10 @@ router.use('/character/:id', (req: Request, res: Response) => {
   }
 });
 
+router.use('/new/character', (req: Request, res: Response) => {
+  res.send("Not implemented yet");
+});
+
 router.use('/verify/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){

@@ -1,0 +1,24 @@
+[
+	{
+		"name": "Human",
+		"description": "Just your average man... or is it?",
+		"baseSpeed":30,
+		"options": [
+			{
+				"name":"choice 1",
+				"function": "(char) => char.strength+= 2;"
+			},{
+				"name":"choice 2",
+				"function": "(char) => char.wisdom+= 2;"
+			}
+		],
+		"function": "(char) => char.dex+= 2;",
+		"racialAbilities": [
+			{
+				"name": "ability 1",
+				"description": "this ability does xzy",
+				"function": null
+			}
+		]
+	}
+]

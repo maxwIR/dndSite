@@ -1,45 +1,5 @@
-interface ICharacter {
-    id: string,
-    name: string,
-    player: string,
-    experience: number,
-    race: string,
-    alignment: string,
-    currentHp: number,
-    stats: IStats,
-    speed: IField,
-    racialTraits: string [],
-    levels: ILevel [],
-    skills: {[key:string]:IField},
-    proficiencies: string[],
-    feats: string[],
-    weapons: any[],
-    inventory: string[],
-    armorClass: IField,
-    touchArmorClass: IField,
-    flatFootedArmorClass: IField,
-}
-
-interface ILevel {
-
-}
-
-
-interface IStats {
-    strength: IField,
-    dexterity: IField,
-    constitution: IField,
-    intelligence: IField,
-    wisdom: IField,
-    charasima: IField,
-}
-
-interface IField {
-    breakdown: {[key:string]:number},
-    conditional: {[key:string]:number}
-}
-
-
+import { ICharacter, IField } from "../common/interfaces";
+import * as defaultCharacter from "../../public/defaultCharacter.json";
 
 export async function getCharacter(id:string) : Promise<ICharacter>{
     let f:IField = {
@@ -81,7 +41,21 @@ export async function getCharacter(id:string) : Promise<ICharacter>{
             charasima: f
         },
         touchArmorClass: f,
-        weapons: ["wep1", "wep2"]
+        weapons: ["wep1", "wep2"],
+        campaign: "defaultCampaign"
     };
     return new Promise(resolve => setTimeout(()=>resolve(character), 2000));
 } 
+
+export class CCharacter {
+    character: ICharacter;
+    constructor(ID: string, name: string, playerName: string, campaign: string) {
+        this.character = (defaultCharacter as ICharacter);
+        this.character.id = ID;
+        this.character.name = name;
+        this.character.player = playerName;
+        this.character.campaign = campaign;
+    }
+
+    
+}
