@@ -55,3 +55,10 @@ export interface IRace {
 	function: null | string | ((char:ICharacter) => ICharacter[]),
 	racialAbilities: IAbility[]
 }
+
+export interface ICampaign {
+    name: string,
+    id: string,
+    characters: ICharacter[]
+}
+
