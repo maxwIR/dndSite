@@ -11,7 +11,7 @@ export class DBTool {
     putData(data: any){
         let item = data;
         if (item.id && item.id.length > 2){
-            item.shortID = item.id.substring(0,2);
+            item.shortid = item.id.substring(0,2);
         }
         let promise = this.container.items.create(item);
         return promise;
