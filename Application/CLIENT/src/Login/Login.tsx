@@ -2,7 +2,7 @@ import * as React from 'react';
 import { request } from '../Common/util';
 // import Splash from '';
 
-interface ILogin {
+interface ILoginS {
     characterID:string;
 }
 
@@ -11,8 +11,8 @@ interface ILoginP {
     setCharacterId: (id: string)=>void;
 }
 
-class Login extends React.Component<ILoginP, ILogin> {
-	constructor(props: any) {
+class Login extends React.Component<ILoginP, ILoginS> {
+	constructor(props: ILoginP) {
         super(props)
         
         this.state = {

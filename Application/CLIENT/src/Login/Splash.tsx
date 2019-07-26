@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Login from './Login';
+import CharacterCreation from '../Character/CharacterCreation';
 
 interface ISplashS {
     customer: "existing"|"new" ;
@@ -33,7 +34,7 @@ class Splash extends React.Component<ISplashP, ISplashS> {
             );
         else {
             return (
-                <h1> Make new character </h1>
+                <CharacterCreation id={null}/>
             )
         }
 	}
