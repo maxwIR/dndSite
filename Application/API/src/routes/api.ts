@@ -18,7 +18,8 @@ router.use('/campaign/:id', (req: Request, res: Response) => {
 
 router.use('/new/campaign', (req: Request, res: Response) => {
   let data = JSON.stringify(req)
-  res.send("Not implemented yet. Recieved: " + data);
+  console.log(data);
+  res.send(("Not implemented yet. Recieved: " + data));
 });
 
 router.use('/new/character', (req: Request, res: Response) => {
