@@ -1,23 +1,24 @@
 import * as React from 'react';
 
 interface ICharacterCreationS {
-    id: string | null,
+    playerID: string | null,
     campaignList: any[],
 }
 
 interface ICharacterCreationP {
-   id: string | null;
+   playerID: string | null;
 }
 
 class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterCreationS> {
 	constructor(props: ICharacterCreationP) {
         super(props)
-        this.setState({
-            id: this.props.id
-        });
+        this.state = {
+            playerID: this.props.playerID,
+            campaignList: []
+        };
         this.loadCharacter = this.loadCharacter.bind(this)
 
-        if (!this.state.id){
+        if (!this.state.playerID){
             // CALL API TO GET CAMPAIGNS
         }
     }
@@ -32,7 +33,7 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
 
 	render() {
         console.log("in Creation")
-        if (this.state.id == null) {
+        if (!this.state || this.state.playerID == null) {
             let campaignEl = <h3>Default</h3>;
             if (this.state.campaignList){
                 let list = this.state.campaignList.map(camp => <li>{camp}</li>);

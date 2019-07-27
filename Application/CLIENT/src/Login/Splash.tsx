@@ -4,7 +4,7 @@ import CharacterCreation from '../Character/CharacterCreation';
 
 interface ISplashS {
     customer: "existing"|"new" ;
-    id: string;
+    id: string | null;
 }
 
 interface ISplashP {
@@ -28,13 +28,14 @@ class Splash extends React.Component<ISplashP, ISplashS> {
 
 	render() {
         console.log("in Splash")
-        if (this.state.customer == "existing")
+        if (this.state.customer == "existing") {
             return (
                 <Login pickNew = {this.pickNew} setCharacterId = {this.props.setCharacterId}/>
             );
+        }
         else {
             return (
-                <CharacterCreation id={null}/>
+                <CharacterCreation playerID = {null}/>
             )
         }
 	}
