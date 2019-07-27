@@ -1,5 +1,5 @@
 import createError from 'http-errors';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import * as path from 'path';
 import cookieParser from 'cookie-parser';
 import { createServer } from "http";
@@ -17,10 +17,10 @@ app.use('/feats', FeatsRouter);
 app.use('/api', APIRouter);
 app.use('/', express.static(path.join(__dirname, '../public')));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-   next(createError(404));
-});
+app.use((err:any, req:Request, res:Response, next:any) => {
+   console.error(err.stack)
+   res.status(500).send('Something broke!');
+ });
 
 // error handler
 // app.use(function(err: any, req: any, res: any, next: any) {
