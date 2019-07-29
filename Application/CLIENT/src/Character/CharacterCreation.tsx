@@ -32,6 +32,7 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
         let name = (document.getElementById('charName') as HTMLInputElement).value;
         let nickName = (document.getElementById('nickName') as HTMLInputElement).value;
         let pin = (document.getElementById('pin')as HTMLInputElement).value;
+        let campaign = (document.getElementById('campaignList')as HTMLSelectElement).value;
         let id = createHash('md5').update(nickName.toLowerCase()+pin).digest('hex');
         console.log(name, pin, id);
 
@@ -45,6 +46,7 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
               id:id,
               name: name,
               nickName: nickName,
+              campaign: campaign,
           });
           console.log('created', postCommand);
         } else {
@@ -67,7 +69,7 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
             let campaignEl = <h3>Default</h3>;
             if (this.state.campaignList.length>0){
                 let list = this.state.campaignList.map(camp => <option value={camp.id}>{camp.name}</option>);
-                campaignEl = <select>Campaigns: {...list}</select>
+                campaignEl = <select id="campaignList">Campaigns: {...list}</select>
             } else {
                 this.getCampaignList();
                 campaignEl = <h3>Loading..</h3>;

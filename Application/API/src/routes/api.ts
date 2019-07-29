@@ -17,14 +17,22 @@ const router: Router = Router();
 router.use('/character/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    characterDB.get(id).then((char) => {
-      console.log("checking id " + JSON.stringify(char)); 
-      res.send(JSON.stringify({
-        character: char,
-      }));
-    });
+    characterDB.get(id)
+      .then((char) => {
+        console.log("checking id " + JSON.stringify(char)); 
+        res.send(JSON.stringify({
+          character: char,
+          exists: true,
+        }));
+      })
+      .catch(e => {
+        res.send(JSON.stringify({
+          error: e,
+          exists: true,
+        }));
+      });
   } else {
-    res.send(new Error('Character not found'));
+    res.send(new Error('No ID provided'));
   }
 });
 
