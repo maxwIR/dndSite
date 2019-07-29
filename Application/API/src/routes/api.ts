@@ -17,9 +17,11 @@ const router: Router = Router();
 router.use('/character/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    getCharacter(id).then((char) => {
+    characterDB.get(id).then((char) => {
       console.log("checking id " + JSON.stringify(char)); 
-      res.send(JSON.stringify(char));
+      res.send(JSON.stringify({
+        character: char,
+      }));
     });
   } else {
     res.send(new Error('Character not found'));

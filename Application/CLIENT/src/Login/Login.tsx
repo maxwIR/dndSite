@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { request } from '../Common/util';
+import { request, post, get } from '../Common/util';
 import { createHash } from 'crypto';
 // import Splash from '';
 
@@ -96,7 +96,7 @@ class Login extends React.Component<ILoginP, ILoginS> {
 export default Login
 
 function confirmID(id:string):Promise<any>{
-  return request('/api/character/'+id)
+  return get('character/'+id)
     .then(string => {console.log("out",string); return !!string}) as Promise<boolean>;
   //return new Promise(resolve => setTimeout(()=>resolve(true), 2000));
 }
