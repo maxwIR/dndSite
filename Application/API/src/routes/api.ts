@@ -43,16 +43,28 @@ router.use('/new/campaign', async (req: Request, res: Response) => {
   res.send(("result: " + result.statusCode + " for item " + JSON.stringify(item)));
 });
 
-router.use('/new/character', (req: Request, res: Response) => {
-  res.send("Not implemented yet");
+router.use('/new/character', async (req: Request, res: Response) => {
+  let data = await getBody(req) as string;
+  let item;
+  try {
+    item = JSON.parse(data);
+  }catch (e) {
+    console.error(e);
+  }
+  if (!(item.id && item.name && item.nickName)){
+    res.send('Badly formed campaign');
+    return;
+  }
+  let result = await campaignDB.putData(item);
+  res.send(("result: " + result.statusCode + " for item " + JSON.stringify(item)));
 });
 
 router.use('/verify/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    res.send(true);
+    res.send({id:id, exists:true});
   }
-    res.send(false);
+    res.send({id:id, exists:false});
 });
 
 router.use('/', (req: Request, res: Response) => {
