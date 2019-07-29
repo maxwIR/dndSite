@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { get } from '../Common/util';
 
 interface ICharacterCreationS {
     playerID: string | null,
@@ -16,7 +17,8 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
             playerID: this.props.playerID,
             campaignList: []
         };
-        this.loadCharacter = this.loadCharacter.bind(this)
+        this.loadCharacter = this.loadCharacter.bind(this);
+        this.getCampaignList = this.getCampaignList.bind(this);
 
         if (!this.state.playerID){
             // CALL API TO GET CAMPAIGNS
@@ -27,19 +29,21 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
         
     }
 
-    getCampaignList() {
-
+    async getCampaignList() {
+        let data = get("campaign/all");
+        console.log(await data);
     }
 
 	render() {
         console.log("in Creation")
         if (!this.state || this.state.playerID == null) {
             let campaignEl = <h3>Default</h3>;
-            if (this.state.campaignList){
-                let list = this.state.campaignList.map(camp => <li>{camp}</li>);
+            if (this.state.campaignList.length>0){
+                let list = this.state.campaignList.map(camp => <li>{camp.name}</li>);
                 campaignEl = <ul>Campaigns: {...list}</ul>
             } else {
-                campaignEl = <h3>Loading</h3>;
+                this.getCampaignList();
+                campaignEl = <h3>Loading..</h3>;
             }
             return (
                 <div>
