@@ -21,8 +21,10 @@ router.use('/character/:id', (req: Request, res: Response) => {
   }
 });
 
-router.use('/campaign/:id', (req: Request, res: Response) => {
-  res.send("Not implemented yet");
+router.use('/campaign/all', async (req: Request, res: Response) => {
+  let data = await campaignDB.getAll();
+  console.log(data.resources);
+  res.send(JSON.stringify(data.resources.map(el => {return {"name": el.name, "id": el.id}})));
 });
 
 router.use('/new/campaign', async (req: Request, res: Response) => {

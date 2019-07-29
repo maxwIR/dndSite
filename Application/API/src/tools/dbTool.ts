@@ -16,4 +16,8 @@ export class DBTool {
         let promise = this.container.items.create(item);
         return promise;
     }
+    getAll() {
+        let it = this.container.items.readAll();
+        return it.fetchAll();
+    }
 }
