@@ -22,7 +22,7 @@ export function request(path: string): Promise<string>{
 }
 
 export function post(url:string, data:any){
-  return fetch(location.hostname + "/api/" + url, {
+  return fetch("api/" + url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -38,7 +38,7 @@ export function post(url:string, data:any){
 }
 
 export function get(url:string){
-  return fetch(location.hostname + "/api/" + url, {
+  return fetch("api/" + url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -49,6 +49,6 @@ export function get(url:string){
     },
     redirect: 'follow', // manual, *follow, error
     referrer: 'no-referrer', // no-referrer, *clients
-  });
+  }).then(resp => resp.json());
 }
 
