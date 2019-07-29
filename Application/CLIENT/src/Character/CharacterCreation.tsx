@@ -21,10 +21,6 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
         this.loadCharacter = this.loadCharacter.bind(this);
         this.createCharacter = this.createCharacter.bind(this);
         this.getCampaignList = this.getCampaignList.bind(this);
-
-        if (!this.state.playerID){
-            // CALL API TO GET CAMPAIGNS
-        }
     }
     
     loadCharacter() {
