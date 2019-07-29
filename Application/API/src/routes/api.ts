@@ -70,7 +70,7 @@ router.use('/character/new', async (req: Request, res: Response) => {
     res.send('Badly formed campaign');
     return;
   }
-  let result = await campaignDB.putData(item);
+  let result = await characterDB.putData(item);
   res.send(("result: " + result.statusCode + " for item " + JSON.stringify(item)));
 });
 
