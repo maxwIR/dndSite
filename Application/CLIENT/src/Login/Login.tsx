@@ -33,7 +33,7 @@ class Login extends React.Component<ILoginP, ILoginS> {
         let but = (document.getElementById('submitButton') as HTMLButtonElement); 
 		  but.disabled= true;
 		  but.innerHTML= '<i class="fa fa-circle-o-notch fa-spin"></i>';
-        let idGood = await confirmID(id);
+        let idGood = await get('character/'+id);
         if (idGood.exists){
           console.log("all good");
           this.props.setCharacterId(id);
@@ -94,9 +94,3 @@ class Login extends React.Component<ILoginP, ILoginS> {
 }
 
 export default Login
-
-function confirmID(id:string):Promise<any>{
-  return get('character/'+id)
-    .then(string => {console.log("out",string); return !!string}) as Promise<boolean>;
-  //return new Promise(resolve => setTimeout(()=>resolve(true), 2000));
-}

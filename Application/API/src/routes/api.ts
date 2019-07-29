@@ -28,7 +28,7 @@ router.use('/character/:id', (req: Request, res: Response) => {
       .catch(e => {
         res.send(JSON.stringify({
           error: e,
-          exists: true,
+          exists: false,
         }));
       });
   } else {
