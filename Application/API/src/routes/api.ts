@@ -7,15 +7,20 @@ const endpoint = 'https://dnd-cosmos-instance.documents.azure.com:443/';
 const key = 'rUjF8GjpqSbmohszfS8C5pMNRlfIwPeOsN3k6wnc5xXTmtJyiFgdKCkEXVWq4yRt0dc8l4nYZkZI2ifZUjKZSg==';
 const schemaName = 'dnd';
 const campaignTableName = 'campaign';
+const characterTableName = 'character';
 
 const campaignDB = new DBTool(endpoint, key, schemaName, campaignTableName);
+const characterDB = new DBTool(endpoint, key, schemaName, characterTableName);
 
 const router: Router = Router();
 
 router.use('/character/:id', (req: Request, res: Response) => {
   var id = req.params.id;
   if(id){
-    getCharacter(id).then((char) => res.send(JSON.stringify(char)));
+    getCharacter(id).then((char) => {
+      console.log("checking id " + JSON.stringify(char)); 
+      res.send(JSON.stringify(char));
+    });
   } else {
     res.send(new Error('Character not found'));
   }
@@ -23,11 +28,11 @@ router.use('/character/:id', (req: Request, res: Response) => {
 
 router.use('/campaign/all', async (req: Request, res: Response) => {
   let data = await campaignDB.getAll();
-  console.log(data.resources);
+  //console.log(data.resources);
   res.send(JSON.stringify(data.resources.map(el => {return {"name": el.name, "id": el.id}})));
 });
 
-router.use('/new/campaign', async (req: Request, res: Response) => {
+router.use('/campaign/new', async (req: Request, res: Response) => {
   let data = await getBody(req) as string;
   let item;
   try {
@@ -43,7 +48,7 @@ router.use('/new/campaign', async (req: Request, res: Response) => {
   res.send(("result: " + result.statusCode + " for item " + JSON.stringify(item)));
 });
 
-router.use('/new/character', async (req: Request, res: Response) => {
+router.use('/character/new', async (req: Request, res: Response) => {
   let data = await getBody(req) as string;
   let item;
   try {
@@ -57,14 +62,6 @@ router.use('/new/character', async (req: Request, res: Response) => {
   }
   let result = await campaignDB.putData(item);
   res.send(("result: " + result.statusCode + " for item " + JSON.stringify(item)));
-});
-
-router.use('/verify/:id', (req: Request, res: Response) => {
-  var id = req.params.id;
-  if(id){
-    res.send({id:id, exists:true});
-  }
-    res.send({id:id, exists:false});
 });
 
 router.use('/', (req: Request, res: Response) => {

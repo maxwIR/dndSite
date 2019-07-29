@@ -45,7 +45,7 @@ class CharacterCreation extends React.Component<ICharacterCreationP, ICharacterC
         let idGood = await get("character/"+id);
         if (!idGood.exists){
           console.log("all good");
-          let postCommand = await post("new/character",{
+          let postCommand = await post("character/new",{
               id:id,
               name: name,
               nickName: nickName,

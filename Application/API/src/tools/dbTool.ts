@@ -20,4 +20,8 @@ export class DBTool {
         let it = this.container.items.readAll();
         return it.fetchAll();
     }
+    get(id:string) {
+        let it = this.container.items.query(`SELECT * from ${this.container.id} WHERE id = ${id}`);
+        return it.fetchAll();
+    }
 }

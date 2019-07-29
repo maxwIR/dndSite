@@ -96,6 +96,7 @@ class Login extends React.Component<ILoginP, ILoginS> {
 export default Login
 
 function confirmID(id:string):Promise<any>{
-  return request('/api/verify/'+id).then(string => !!string) as Promise<boolean>;
+  return request('/api/character/'+id)
+    .then(string => {console.log("out",string); return !!string}) as Promise<boolean>;
   //return new Promise(resolve => setTimeout(()=>resolve(true), 2000));
 }
